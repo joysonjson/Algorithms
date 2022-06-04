@@ -37,14 +37,23 @@ func formatNumber(number: String)-> String{
     var res = ""
     for (index,cha) in noDashes.enumerated(){
         res.append(cha)
-        if ((index+1) % 3 == 0){
+        if ((index+1) % 3 == 0 && (index + 1) != noDashes.count){
             res.append("-")
         }
+        
     }
-    return res
+    
+    var chars = Array(res)
+    if (chars[chars.count - 2] == "-"){
+        chars[chars.count - 2] = chars[chars.count - 3]
+        chars[chars.count - 3] = "-"
+    }
+    return String(chars)
 }
 
-let res = formatNumber(number: "00-91   1234567890")
+let res = formatNumber(number: "00-91   12345678902")
+//let res2 = formatNumber(number: "00-   12345678")
+
 print(res)
 
 
